@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.vomiter.morecandles.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "SoulCandlePiglinRepellentMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "rns.mixins.refmap.json",
+  "plugin": "com.vomiter.morecandles.ModMixinPlugin"
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/candle",
+  "textures": {
+    "layer0": "morecandles:item/soul_candle"
+  }
+}
