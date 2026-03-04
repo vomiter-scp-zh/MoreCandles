@@ -1,5 +1,6 @@
 package com.vomiter.morecandles.data.recipe;
 
+import com.vomiter.morecandles.Helpers;
 import com.vomiter.morecandles.registry.ModBlocks;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -9,10 +10,13 @@ import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Locale;
 import java.util.function.Consumer;
 
 public class ModRecipeProvider extends RecipeProvider {
@@ -49,7 +53,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(c, ModBlocks.SOUL_CANDLE.getId());
 
         assert ModBlocks.END_CANDLE.getId() != null;
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.END_CANDLE.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.END_CANDLE.get(), 4)
                 .pattern("s")
                 .pattern("H")
                 .pattern("E")
@@ -58,5 +62,20 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('E', Items.END_ROD)
                 .unlockedBy("get_end_rod", unlockedBy(ItemPredicate.Builder.item().of(Items.END_ROD).build()))
                 .save(c, ModBlocks.END_CANDLE.getId());
+
+        ModBlocks.SCENTED_CANDLES.forEach((scented, candle) -> {
+            if(candle == null) return;
+            if(candle.getId() == null) return;
+            Item flower = ForgeRegistries.ITEMS.getValue(Helpers.minecraftId(scented.name().toLowerCase(Locale.ROOT)));
+            if(flower == null) return;
+            ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, candle.get())
+                    .pattern("FFF")
+                    .pattern("FCF")
+                    .pattern("FFF")
+                    .define('C', Items.CANDLE)
+                    .define('F', flower)
+                    .unlockedBy("get_candle", unlockedBy(ItemPredicate.Builder.item().of(Items.CANDLE).build()))
+                    .save(c, candle.getId());
+        });
     }
 }

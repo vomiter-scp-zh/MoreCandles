@@ -18,6 +18,7 @@
     "E"
   ],
   "result": {
+    "count": 4,
     "item": "morecandles:end_candle"
   },
   "show_notification": true

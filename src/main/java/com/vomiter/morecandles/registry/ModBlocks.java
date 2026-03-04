@@ -2,8 +2,12 @@ package com.vomiter.morecandles.registry;
 
 import com.vomiter.morecandles.common.block.EndCandle;
 import com.vomiter.morecandles.common.block.RedStoneCandle;
+import com.vomiter.morecandles.common.block.ScentedCandle;
 import com.vomiter.morecandles.common.block.SoulCandle;
+import com.vomiter.morecandles.common.compat.supp.ModSuppRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -16,10 +20,15 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.EnumMap;
+import java.util.Locale;
+import java.util.Map;
+import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 
 public class ModBlocks {
@@ -49,11 +58,30 @@ public class ModBlocks {
     private static EndCandle endCandle(MapColor p_285034_) {
         return new EndCandle(BlockBehaviour.Properties.of().mapColor(p_285034_).noOcclusion().strength(0.1F).sound(SoundType.CANDLE).lightLevel(CandleBlock.LIGHT_EMISSION).pushReaction(PushReaction.DESTROY));
     }
+    private static ScentedCandle scentedCandle(MapColor p_285034_, MobEffect effect) {
+        return new ScentedCandle(BlockBehaviour.Properties.of().mapColor(p_285034_).noOcclusion().strength(0.1F).sound(SoundType.CANDLE).lightLevel(CandleBlock.LIGHT_EMISSION).pushReaction(PushReaction.DESTROY), effect);
+    }
 
+    public enum Scented{
+        POPPY(() -> MobEffects.NIGHT_VISION),
+        ALLIUM(() -> MobEffects.FIRE_RESISTANCE);
 
+        public final Supplier<MobEffect> effect;
+        Scented(Supplier<MobEffect> effect){
+            this.effect = effect;
+        }
+    }
+
+    public static final Map<Scented, RegistryObject<Block>> SCENTED_CANDLES = new EnumMap<>(Scented.class);
+    static {
+        for (Scented scented : Scented.values()) {
+            SCENTED_CANDLES.put(scented, BLOCKS.register("scented_candle/" + scented.toString().toLowerCase(Locale.ROOT), () -> scentedCandle(MapColor.SAND, scented.effect.get())));
+        }
+    }
     public static final RegistryObject<Block> REDSTONE_CANDLE = BLOCKS.register("redstone_candle", () -> redStoneCandle(MapColor.SAND));
     public static final RegistryObject<Block> SOUL_CANDLE = BLOCKS.register("soul_candle", () -> soulCandle(MapColor.SAND));
     public static final RegistryObject<Block> END_CANDLE = BLOCKS.register("end_candle", () -> endCandle(MapColor.TERRACOTTA_WHITE));
+
 
     private static void registerItem(RegistryObject<Block> block){
         ModItems.ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));
@@ -63,5 +91,9 @@ public class ModBlocks {
         registerItem(REDSTONE_CANDLE);
         registerItem(SOUL_CANDLE);
         registerItem(END_CANDLE);
+        SCENTED_CANDLES.values().forEach(ModBlocks::registerItem);
+        if(ModList.get().isLoaded("supplementaries")){
+            new ModSuppRegistry();
+        }
     }
 }

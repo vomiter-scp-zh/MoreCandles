@@ -13,4 +13,12 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}")
+
+    compileOnly fg.deobf("curse.maven:selene-499980:7664875")
+    runtimeOnly fg.deobf("curse.maven:selene-499980:7664875")
+    compileOnly fg.deobf("curse.maven:supplementaries-412082:7431873")
+    //runtimeOnly fg.deobf("curse.maven:supplementaries-412082:7431873")
+
+    //runtimeOnly fg.deobf("curse.maven:buzzier-bees-355458:6151411")
+    //runtimeOnly fg.deobf("curse.maven:blueprint-382216:6408581")
 }

@@ -21,6 +21,9 @@ public class ModCreativeTabs {
                         output.accept(ModBlocks.SOUL_CANDLE.get());
                         output.accept(ModBlocks.REDSTONE_CANDLE.get());
                         output.accept(ModBlocks.END_CANDLE.get());
+                        ModBlocks.SCENTED_CANDLES.values().forEach(
+                                robj -> output.accept(robj.get())
+                        );
                     })
                     .build()
     );

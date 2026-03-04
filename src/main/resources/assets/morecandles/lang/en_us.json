@@ -1,3 +1,5 @@
 {
-  "itemGroup.more_candles": "More Candles"
+  "itemGroup.more_candles": "More Candles",
+  "advancement.morecandles.mixed_scents.title": "Not That Kind of Cocktail",
+  "advancement.morecandles.mixed_scents.desc": "Mixing scents is not as pleasant as mixing drinks."
 }

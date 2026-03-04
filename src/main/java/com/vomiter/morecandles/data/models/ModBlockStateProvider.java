@@ -54,6 +54,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         customCandle(ModBlocks.REDSTONE_CANDLE);
         customCandle(ModBlocks.SOUL_CANDLE);
         customCandle(ModBlocks.END_CANDLE);
+        ModBlocks.SCENTED_CANDLES.values().forEach(this::customCandle);
     }
 
     private void customCandle(RegistryObject<Block> block){
@@ -122,7 +123,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .partialState().with(CANDLES, 4).with(LIT, true ).modelForState().modelFile(fourLit).addModel();
 
         // item model：通常指向 one_candle block model 就行（原版 candle 也類似概念）
-        itemModels().withExistingParent(name, mcLoc("item/candle")).texture("layer0", modLoc("item/" + name));
+        itemModels().withExistingParent("item/" + name, mcLoc("item/candle")).texture("layer0", modLoc("item/" + name));
     }
 
     private ModelFile candleModel(String modelName, ResourceLocation parent, ResourceLocation allTexture) {

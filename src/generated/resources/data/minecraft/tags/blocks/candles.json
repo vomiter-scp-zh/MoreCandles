@@ -1,6 +1,8 @@
 {
   "values": [
     "morecandles:soul_candle",
-    "morecandles:end_candle"
+    "morecandles:end_candle",
+    "morecandles:scented_candle/poppy",
+    "morecandles:scented_candle/allium"
   ]
 }
