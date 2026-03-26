@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:candle"
+    },
+    "F": {
+      "item": "minecraft:oxeye_daisy"
+    }
+  },
+  "pattern": [
+    "FFF",
+    "FCF",
+    "FFF"
+  ],
+  "result": {
+    "item": "morecandles:scented_candle/oxeye"
+  },
+  "show_notification": true
+}

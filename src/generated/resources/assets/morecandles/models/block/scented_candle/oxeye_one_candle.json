@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_candle",
+  "textures": {
+    "all": "morecandles:block/scented_candle/oxeye",
+    "particle": "morecandles:block/scented_candle/oxeye"
+  }
+}

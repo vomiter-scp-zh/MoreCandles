@@ -67,6 +67,7 @@ public class ModRecipeProvider extends RecipeProvider {
             if(candle == null) return;
             if(candle.getId() == null) return;
             Item flower = ForgeRegistries.ITEMS.getValue(Helpers.minecraftId(scented.name().toLowerCase(Locale.ROOT)));
+            if(scented == ModBlocks.Scented.OXEYE) flower = Items.OXEYE_DAISY;
             if(flower == null) return;
             ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, candle.get())
                     .pattern("FFF")

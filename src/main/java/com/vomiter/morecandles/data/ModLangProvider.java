@@ -24,6 +24,9 @@ public class ModLangProvider extends LanguageProvider {
         add(ModBlocks.END_CANDLE.get(), tr("End Candle", "終界蠟燭"));
         add(ModBlocks.SCENTED_CANDLES.get(ModBlocks.Scented.POPPY).get(), tr("Poppy Scented Candle", "罌粟香氛蠟燭"));
         add(ModBlocks.SCENTED_CANDLES.get(ModBlocks.Scented.ALLIUM).get(), tr("Allium Scented Candle", "紫紅球花香氛蠟燭"));
+        add(ModBlocks.SCENTED_CANDLES.get(ModBlocks.Scented.DANDELION).get(), tr("Dandelion Scented Candle", "蒲公英香氛蠟燭"));
+        add(ModBlocks.SCENTED_CANDLES.get(ModBlocks.Scented.OXEYE).get(), tr("Oxeye Scented Candle", "雛菊香氛蠟燭"));
+
     }
 
     /**

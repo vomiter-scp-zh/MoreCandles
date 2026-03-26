@@ -64,7 +64,9 @@ public class ModBlocks {
 
     public enum Scented{
         POPPY(() -> MobEffects.NIGHT_VISION),
-        ALLIUM(() -> MobEffects.FIRE_RESISTANCE);
+        ALLIUM(() -> MobEffects.FIRE_RESISTANCE),
+        DANDELION(() -> MobEffects.SATURATION),
+        OXEYE(() -> MobEffects.REGENERATION);
 
         public final Supplier<MobEffect> effect;
         Scented(Supplier<MobEffect> effect){

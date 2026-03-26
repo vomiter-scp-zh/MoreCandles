@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:candle"
+    },
+    "F": {
+      "item": "minecraft:dandelion"
+    }
+  },
+  "pattern": [
+    "FFF",
+    "FCF",
+    "FFF"
+  ],
+  "result": {
+    "item": "morecandles:scented_candle/dandelion"
+  },
+  "show_notification": true
+}

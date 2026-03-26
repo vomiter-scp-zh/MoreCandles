@@ -1,6 +1,9 @@
 {
   "block.morecandles.end_candle": "End Candle",
   "block.morecandles.redstone_candle": "Redstone Candle",
+  "block.morecandles.scented_candle.allium": "Allium Scented Candle",
+  "block.morecandles.scented_candle.dandelion": "Dandelion Scented Candle",
+  "block.morecandles.scented_candle.oxeye": "Oxeye Scented Candle",
   "block.morecandles.scented_candle.poppy": "Poppy Scented Candle",
   "block.morecandles.soul_candle": "Soul Candle"
 }
