@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_two_candles",
+  "textures": {
+    "all": "morecandles:block/scented_candle/cornflower",
+    "particle": "morecandles:block/scented_candle/cornflower"
+  }
+}

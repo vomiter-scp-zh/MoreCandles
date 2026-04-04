@@ -66,7 +66,8 @@ public class ModBlocks {
         POPPY(() -> MobEffects.NIGHT_VISION),
         ALLIUM(() -> MobEffects.FIRE_RESISTANCE),
         DANDELION(() -> MobEffects.SATURATION),
-        OXEYE(() -> MobEffects.REGENERATION);
+        OXEYE(() -> MobEffects.REGENERATION),
+        CORNFLOWER(() -> MobEffects.JUMP);
 
         public final Supplier<MobEffect> effect;
         Scented(Supplier<MobEffect> effect){
