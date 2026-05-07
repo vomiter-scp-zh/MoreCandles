@@ -5,6 +5,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModItems {
-    static DeferredRegister<Item> ITEMS
+    public static DeferredRegister<Item> ITEMS
             = ModRegistries.createRegistry(ForgeRegistries.ITEMS);
 }

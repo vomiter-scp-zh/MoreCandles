@@ -3,6 +3,7 @@ package com.vomiter.morecandles.data;
 import com.vomiter.morecandles.data.loot.ModLootTables;
 import com.vomiter.morecandles.data.models.ModBlockStateProvider;
 import com.vomiter.morecandles.data.models.ModItemModelProvider;
+import com.vomiter.morecandles.data.models.ModSuppCandleHolderRawProvider;
 import com.vomiter.morecandles.data.recipe.ModRecipeProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
@@ -21,6 +22,7 @@ public class ModDataGenerator {
         generator.addProvider(event.includeClient(), new ModBlockStateProvider(output, helper));
         generator.addProvider(event.includeServer(), new ModLootTables(output));
         generator.addProvider(event.includeServer(), new ModRecipeProvider(output));
+        generator.addProvider(event.includeClient(), new ModSuppCandleHolderRawProvider(output));
         new ModTagProviders(event);
 
         for (String locale : ModLangProvider.locales) {

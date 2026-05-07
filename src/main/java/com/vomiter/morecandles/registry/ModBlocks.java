@@ -86,7 +86,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> END_CANDLE = BLOCKS.register("end_candle", () -> endCandle(MapColor.TERRACOTTA_WHITE));
 
 
-    private static void registerItem(RegistryObject<Block> block){
+    public static void registerItem(RegistryObject<Block> block){
         ModItems.ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));
     }
 

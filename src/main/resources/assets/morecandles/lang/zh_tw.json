@@ -1,5 +1,12 @@
 {
   "itemGroup.more_candles": "更多蠟燭",
   "advancement.morecandles.mixed_scents.title": "不是這種雞尾酒",
-  "advancement.morecandles.mixed_scents.desc": "混和的飲料可以好喝，但混和的香氛就不一定了。"
+  "advancement.morecandles.mixed_scents.desc": "混和的飲料可以好喝，但混和的香氛就不一定了。",
+  "block.morecandles.end_candle_holder": "終界燭台",
+  "block.morecandles.soul_candle_holder": "靈魂燭台",
+  "block.morecandles.scented_candle.allium_holder": "紫紅球花香氛燭台",
+  "block.morecandles.scented_candle.cornflower_holder": "矢車菊香氛燭台",
+  "block.morecandles.scented_candle.dandelion_holder": "蒲公英香氛燭台",
+  "block.morecandles.scented_candle.oxeye_holder": "雛菊香氛燭台",
+  "block.morecandles.scented_candle.poppy_holder": "罌粟香氛燭台"
 }

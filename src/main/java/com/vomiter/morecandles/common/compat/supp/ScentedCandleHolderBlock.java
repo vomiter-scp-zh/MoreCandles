@@ -1,18 +1,18 @@
-package com.vomiter.morecandles.common.block;
+package com.vomiter.morecandles.common.compat.supp;
 
+import com.vomiter.morecandles.common.block.IScentedCandle;
+import net.mehvahdjukaar.supplementaries.common.block.blocks.CandleHolderBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.CandleBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
-public class ScentedCandle  extends CandleBlock implements IScentedCandle {
+public class ScentedCandleHolderBlock  extends CandleHolderBlock implements IScentedCandle {
     public final MobEffect effect;
     private final double r;
     private final double g;
@@ -21,13 +21,14 @@ public class ScentedCandle  extends CandleBlock implements IScentedCandle {
     private int ticksUntilNextParticle = 0;
     private int particleUntilCooldown = particleUntilCooldownMax;
 
-    public ScentedCandle(Properties p_152801_, MobEffect effect) {
-        super(p_152801_);
+    public ScentedCandleHolderBlock(DyeColor color, Properties properties, MobEffect effect) {
+        super(color, properties, () -> ParticleTypes.SMALL_FLAME, CandleHolderBlock::getParticleOffsets);
         this.effect = effect;
-        int color = effect.getColor(); // 例如 SAEffects.XXX.get().getColor()
-        r = (color >> 16 & 255) / 255.0;
-        g = (color >> 8 & 255) / 255.0;
-        b = (color & 255) / 255.0;
+        int ecolor = effect.getColor(); // 例如 SAEffects.XXX.get().getColor()
+        r = (ecolor >> 16 & 255) / 255.0;
+        g = (ecolor >> 8 & 255) / 255.0;
+        b = (ecolor & 255) / 255.0;
+
     }
 
     @Override
@@ -77,6 +78,6 @@ public class ScentedCandle  extends CandleBlock implements IScentedCandle {
 
     @Override
     public Iterable<Vec3> getScentedCandleParticleOffsets(BlockState p_152812_) {
-        return getParticleOffsets(p_152812_);
+        return CandleHolderBlock.getParticleOffsets(p_152812_);
     }
 }

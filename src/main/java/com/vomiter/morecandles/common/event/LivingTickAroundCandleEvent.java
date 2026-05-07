@@ -1,7 +1,7 @@
 package com.vomiter.morecandles.common.event;
 
 import com.vomiter.morecandles.Helpers;
-import com.vomiter.morecandles.common.block.ScentedCandle;
+import com.vomiter.morecandles.common.block.IScentedCandle;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.core.BlockPos;
@@ -46,11 +46,11 @@ public class LivingTickAroundCandleEvent {
         for (int dx = -r; dx <= r; dx++) {for (int dy = -r; dy <= 2; dy++) {for (int dz = -r; dz <= r; dz++) {
             BlockPos pos = center.offset(dx, dy, dz);
             var state = entity.level().getBlockState(pos);
-            if (state.getBlock() instanceof ScentedCandle sc) {
+            if (state.getBlock() instanceof IScentedCandle sc) {
                 if(!state.getValue(CandleBlock.LIT)) continue;
                 var radius2 = (state.getValue(CandleBlock.CANDLES) + 1) * (state.getValue(CandleBlock.CANDLES) + 1);
                 if(radius2 < pos.distToCenterSqr(entity.position())) continue;
-                mobEffects.add(sc.effect);
+                mobEffects.add(sc.effect());
             }
         }}}
         if((long) mobEffects.size() <= 0) {
