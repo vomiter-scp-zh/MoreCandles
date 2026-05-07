@@ -1,0 +1,6 @@
+{
+  "parent": "supplementaries:block/candle_holders/floor_2_lit",
+  "textures": {
+    "all": "morecandles:block/scented_candle/dandelion_lit"
+  }
+}

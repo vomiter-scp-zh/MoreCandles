@@ -1,0 +1,6 @@
+{
+  "parent": "supplementaries:block/candle_holders/ceiling_3f",
+  "textures": {
+    "all": "morecandles:block/scented_candle/dandelion"
+  }
+}

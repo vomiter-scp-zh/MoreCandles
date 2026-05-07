@@ -1,0 +1,6 @@
+{
+  "parent": "supplementaries:block/candle_holders/floor_1_lit",
+  "textures": {
+    "all": "morecandles:block/scented_candle/allium_lit"
+  }
+}

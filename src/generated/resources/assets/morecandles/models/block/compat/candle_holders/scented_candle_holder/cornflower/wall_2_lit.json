@@ -1,0 +1,6 @@
+{
+  "parent": "supplementaries:block/candle_holders/wall_2_lit",
+  "textures": {
+    "all": "morecandles:block/scented_candle/cornflower_lit"
+  }
+}

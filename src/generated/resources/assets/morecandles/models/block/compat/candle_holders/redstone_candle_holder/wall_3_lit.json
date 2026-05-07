@@ -1,0 +1,6 @@
+{
+  "parent": "supplementaries:block/candle_holders/wall_3_lit",
+  "textures": {
+    "all": "morecandles:block/redstone_candle_lit"
+  }
+}
