@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "morecandles:scented_candle/poppy"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "pattern": [
+    "C",
+    "I"
+  ],
+  "result": {
+    "count": 1,
+    "item": "morecandles:scented_candle_holder/poppy"
+  },
+  "show_notification": true
+}
