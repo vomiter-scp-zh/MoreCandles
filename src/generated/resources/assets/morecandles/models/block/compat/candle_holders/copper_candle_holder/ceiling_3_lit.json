@@ -1,0 +1,6 @@
+{
+  "parent": "supplementaries:block/candle_holders/ceiling_3_lit",
+  "textures": {
+    "all": "morecandles:block/copper_candle_lit"
+  }
+}
