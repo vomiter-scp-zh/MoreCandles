@@ -54,6 +54,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         customCandle(ModBlocks.REDSTONE_CANDLE);
         customCandle(ModBlocks.SOUL_CANDLE);
         customCandle(ModBlocks.END_CANDLE);
+        customCandle(ModBlocks.COPPER_CANDLE);
         ModBlocks.SCENTED_CANDLES.values().forEach(this::customCandle);
     }
 
@@ -76,7 +77,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
      * - textures/block/<name>_lit.png
      */
     private void customCandle(Block block, String name) {
-        // 你想要的貼圖位置（可依你專案習慣調整）
         ResourceLocation texUnlit = modLoc("block/" + name);
         ResourceLocation texLit   = modLoc("block/" + name + "_lit");
 

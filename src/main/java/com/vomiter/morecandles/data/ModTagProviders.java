@@ -81,7 +81,8 @@ public class ModTagProviders {
             tag(net.minecraft.tags.BlockTags.CANDLES)
                     .add(
                             ModBlocks.SOUL_CANDLE.get(),
-                            ModBlocks.END_CANDLE.get()
+                            ModBlocks.END_CANDLE.get(),
+                            ModBlocks.COPPER_CANDLE.get()
                     );
             ModBlocks.SCENTED_CANDLES.values().forEach(
                     robj

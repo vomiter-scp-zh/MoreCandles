@@ -22,6 +22,8 @@ public class ModBlockLootTable implements LootTableSubProvider {
     public void generate(BiConsumer<ResourceLocation, LootTable.Builder> b) {
         addCandleLoot(b, ModBlocks.REDSTONE_CANDLE);
         addCandleLoot(b, ModBlocks.SOUL_CANDLE);
+        addCandleLoot(b, ModBlocks.END_CANDLE);
+        addCandleLoot(b, ModBlocks.COPPER_CANDLE);
         ModBlocks.SCENTED_CANDLES.values().forEach(robj -> addCandleLoot(b, robj));
     }
 }

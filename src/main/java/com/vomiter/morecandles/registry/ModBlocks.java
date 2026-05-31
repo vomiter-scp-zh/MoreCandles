@@ -1,9 +1,6 @@
 package com.vomiter.morecandles.registry;
 
-import com.vomiter.morecandles.common.block.EndCandle;
-import com.vomiter.morecandles.common.block.RedStoneCandle;
-import com.vomiter.morecandles.common.block.ScentedCandle;
-import com.vomiter.morecandles.common.block.SoulCandle;
+import com.vomiter.morecandles.common.block.*;
 import com.vomiter.morecandles.common.compat.supp.ModSuppRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffect;
@@ -58,6 +55,10 @@ public class ModBlocks {
     private static EndCandle endCandle(MapColor p_285034_) {
         return new EndCandle(BlockBehaviour.Properties.of().mapColor(p_285034_).noOcclusion().strength(0.1F).sound(SoundType.CANDLE).lightLevel(CandleBlock.LIGHT_EMISSION).pushReaction(PushReaction.DESTROY));
     }
+    private static CopperCandle copperCandle(MapColor p_285034_) {
+        return new CopperCandle(BlockBehaviour.Properties.of().mapColor(p_285034_).noOcclusion().strength(0.1F).sound(SoundType.CANDLE).lightLevel(CandleBlock.LIGHT_EMISSION).pushReaction(PushReaction.DESTROY));
+    }
+
     private static ScentedCandle scentedCandle(MapColor p_285034_, MobEffect effect) {
         return new ScentedCandle(BlockBehaviour.Properties.of().mapColor(p_285034_).noOcclusion().strength(0.1F).sound(SoundType.CANDLE).lightLevel(CandleBlock.LIGHT_EMISSION).pushReaction(PushReaction.DESTROY), effect);
     }
@@ -84,6 +85,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> REDSTONE_CANDLE = BLOCKS.register("redstone_candle", () -> redStoneCandle(MapColor.SAND));
     public static final RegistryObject<Block> SOUL_CANDLE = BLOCKS.register("soul_candle", () -> soulCandle(MapColor.SAND));
     public static final RegistryObject<Block> END_CANDLE = BLOCKS.register("end_candle", () -> endCandle(MapColor.TERRACOTTA_WHITE));
+    public static final RegistryObject<Block> COPPER_CANDLE = BLOCKS.register("copper_candle", () -> copperCandle(MapColor.TERRACOTTA_ORANGE));
+
 
 
     public static void registerItem(RegistryObject<Block> block){
@@ -94,6 +97,7 @@ public class ModBlocks {
         registerItem(REDSTONE_CANDLE);
         registerItem(SOUL_CANDLE);
         registerItem(END_CANDLE);
+        registerItem(COPPER_CANDLE);
         SCENTED_CANDLES.values().forEach(ModBlocks::registerItem);
         if(ModList.get().isLoaded("supplementaries")){
             new ModSuppRegistry();

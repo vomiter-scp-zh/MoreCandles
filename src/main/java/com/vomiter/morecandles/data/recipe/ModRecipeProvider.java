@@ -63,6 +63,18 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("get_end_rod", unlockedBy(ItemPredicate.Builder.item().of(Items.END_ROD).build()))
                 .save(c, ModBlocks.END_CANDLE.getId());
 
+        assert ModBlocks.COPPER_CANDLE.getId() != null;
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.COPPER_CANDLE.get(), 1)
+                .pattern("s")
+                .pattern("H")
+                .pattern("E")
+                .define('s', Tags.Items.STRING)
+                .define('H', Items.HONEYCOMB)
+                .define('E', Items.COPPER_INGOT)
+                .unlockedBy("get_copper", unlockedBy(ItemPredicate.Builder.item().of(Items.COPPER_INGOT).build()))
+                .save(c, ModBlocks.COPPER_CANDLE.getId());
+
+
         ModBlocks.SCENTED_CANDLES.forEach((scented, candle) -> {
             if(candle == null) return;
             if(candle.getId() == null) return;
