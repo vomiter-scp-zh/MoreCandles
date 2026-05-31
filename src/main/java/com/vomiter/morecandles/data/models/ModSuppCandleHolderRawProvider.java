@@ -10,21 +10,13 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 
 /**
  * Raw JSON generator for Supplementaries-style candle holders.
- *
- * This provider:
- * 1. does NOT touch Supplementaries classes
- * 2. does NOT require Block / RegistryObject instances
- * 3. writes blockstates + block models + item models directly
- *
  * Output examples:
  * - assets/morecandles/blockstates/soul_candle_holder.json
  * - assets/morecandles/models/block/compat/candle_holders/soul_candle_holder/floor_1.json
@@ -81,6 +73,7 @@ public class ModSuppCandleHolderRawProvider implements DataProvider {
         defs.add(fromCandle("redstone_candle"));
         defs.add(fromCandle("soul_candle"));
         defs.add(fromCandle("end_candle"));
+        defs.add(fromCandle("copper_candle"));
 
         defs.add(fromCandle("scented_candle/poppy"));
         defs.add(fromCandle("scented_candle/allium"));
@@ -111,7 +104,6 @@ public class ModSuppCandleHolderRawProvider implements DataProvider {
 
         JsonObject textures = new JsonObject();
         // Supplementaries candle-holder models use #all for the candle body.
-        // We intentionally only override "all".
         if (suppParentName.endsWith("_lit")) {
             textures.addProperty("all", def.candleTextureLit().toString());
         } else {
@@ -182,13 +174,6 @@ public class ModSuppCandleHolderRawProvider implements DataProvider {
                 ",candles=" + candles;
     }
 
-    /**
-     * Assumed Supplementaries 1.20.1 model family:
-     * floor_1..4, floor_1_lit..4_lit
-     * wall_1..4, wall_1_lit..4_lit
-     * ceiling_1..4, ceiling_1_lit..4_lit
-     * ceiling_1f..4f, ceiling_1f_lit..4f_lit
-     */
     private static String resolveSuppModelName(Face face, Horizontal facing, int candles, boolean lit) {
         String suffix = lit ? "_lit" : "";
 

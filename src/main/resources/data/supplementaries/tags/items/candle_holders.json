@@ -1,6 +1,12 @@
 {
   "values": [
     "morecandles:soul_candle_holder",
-    "morecandles:end_candle_holder"
+    "morecandles:end_candle_holder",
+    "morecandles:copper_candle_holder",
+    "morecandles:scented_candle_holder/poppy",
+    "morecandles:scented_candle_holder_holder/allium",
+    "morecandles:scented_candle_holder/dandelion",
+    "morecandles:scented_candle_holder/oxeye",
+    "morecandles:scented_candle_holder/cornflower"
   ]
 }

@@ -1,4 +1,4 @@
-package com.vomiter.morecandles.common.compat.supp;
+package com.vomiter.morecandles.compat.supp;
 
 import com.vomiter.morecandles.registry.ModBlocks;
 import net.minecraft.world.level.block.Block;
@@ -13,5 +13,9 @@ public class SupplementariesCompat {
     public static RegistryObject<Block> getEndCandleHolder(){
         return ModSuppRegistry.END_CANDLE_HOLDER;
     }
+    public static RegistryObject<Block> getCopperCandleHolder(){
+        return ModSuppRegistry.COPPER_CANDLE_HOLDER;
+    }
+
     public static Map<ModBlocks.Scented, RegistryObject<Block>> getScentedCandleHolders(){ return ModSuppRegistry.SCENTED_CANDLE_HOLDERS;}
 }

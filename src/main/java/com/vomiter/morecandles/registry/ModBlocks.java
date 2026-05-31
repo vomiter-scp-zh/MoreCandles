@@ -1,7 +1,7 @@
 package com.vomiter.morecandles.registry;
 
 import com.vomiter.morecandles.common.block.*;
-import com.vomiter.morecandles.common.compat.supp.ModSuppRegistry;
+import com.vomiter.morecandles.compat.supp.ModSuppRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;

@@ -1,6 +1,6 @@
 package com.vomiter.morecandles.registry;
 
-import com.vomiter.morecandles.common.compat.supp.SupplementariesCompat;
+import com.vomiter.morecandles.compat.supp.SupplementariesCompat;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -30,6 +30,7 @@ public class ModCreativeTabs {
                         if(ModList.get().isLoaded("supplementaries")){
                             output.accept(SupplementariesCompat.getSoulCandleHolder().get());
                             output.accept(SupplementariesCompat.getEndCandleHolder().get());
+                            output.accept(SupplementariesCompat.getCopperCandleHolder().get());
                             SupplementariesCompat.getScentedCandleHolders().values().forEach(b -> output.accept(b.get()));
                         }
                     })

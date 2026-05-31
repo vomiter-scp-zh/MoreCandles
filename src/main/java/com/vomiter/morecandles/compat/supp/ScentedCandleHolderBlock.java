@@ -1,4 +1,4 @@
-package com.vomiter.morecandles.common.compat.supp;
+package com.vomiter.morecandles.compat.supp;
 
 import com.vomiter.morecandles.common.block.IScentedCandle;
 import net.mehvahdjukaar.supplementaries.common.block.blocks.CandleHolderBlock;
