@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "minecraft:end_rod"
+    },
+    "H": {
+      "item": "minecraft:honeycomb"
+    },
+    "s": {
+      "tag": "c:strings"
+    }
+  },
+  "pattern": [
+    "s",
+    "H",
+    "E"
+  ],
+  "result": {
+    "count": 4,
+    "id": "morecandles:end_candle"
+  }
+}

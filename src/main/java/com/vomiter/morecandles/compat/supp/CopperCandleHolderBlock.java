@@ -14,12 +14,12 @@ import org.jetbrains.annotations.NotNull;
 
 public class CopperCandleHolderBlock extends CandleHolderBlock implements ICopperCandle {
     public CopperCandleHolderBlock(DyeColor color, Properties properties) {
-        super(color, properties, ModParticles.SMALL_END_FLAME::get, CandleHolderBlock::getParticleOffsets);
+        super(color, properties, ModParticles.SMALL_END_FLAME::get, CandleHolderBlock::getDefaultParticleOffsets);
     }
 
     @Override
     public Iterable<Vec3> getCopperCandleParticleOffsets(BlockState p_152812_) {
-        return CandleHolderBlock.getParticleOffsets(p_152812_);
+        return CandleHolderBlock.getDefaultParticleOffsets(p_152812_);
     }
 
     @Override

@@ -2,35 +2,37 @@ package com.vomiter.morecandles.data.recipe;
 
 import com.vomiter.morecandles.Helpers;
 import com.vomiter.morecandles.registry.ModBlocks;
+import net.minecraft.advancements.Criterion;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraftforge.common.Tags;
-import net.minecraftforge.registries.ForgeRegistries;
+import net.neoforged.neoforge.common.Tags;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Locale;
-import java.util.function.Consumer;
+import java.util.concurrent.CompletableFuture;
 
 public class ModRecipeProvider extends RecipeProvider {
-    public ModRecipeProvider(PackOutput p_248933_) {
-        super(p_248933_);
+
+    public ModRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+        super(output, registries);
     }
 
-    private InventoryChangeTrigger.TriggerInstance unlockedBy(ItemPredicate predicate){
+    private Criterion<?> unlockedBy(ItemPredicate predicate){
         return InventoryChangeTrigger.TriggerInstance.hasItems(predicate);
     }
 
     @Override
-    protected void buildRecipes(@NotNull Consumer<FinishedRecipe> c) {
-        assert ModBlocks.REDSTONE_CANDLE.getId() != null;
+    protected void buildRecipes(@NotNull RecipeOutput recipeOutput) {
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.REDSTONE_CANDLE.get())
                 .pattern("R")
                 .pattern("H")
@@ -39,48 +41,43 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('G', Items.GOLD_NUGGET)
                 .define('H', Items.HONEYCOMB)
                 .unlockedBy("get_redstone", unlockedBy(ItemPredicate.Builder.item().of(Items.REDSTONE).build()))
-                .save(c, ModBlocks.REDSTONE_CANDLE.getId());
+                .save(recipeOutput, ModBlocks.REDSTONE_CANDLE.getId());
 
-        assert ModBlocks.SOUL_CANDLE.getId() != null;
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.SOUL_CANDLE.get())
                 .pattern("s")
                 .pattern("H")
                 .pattern("S")
-                .define('s', Tags.Items.STRING)
+                .define('s', Tags.Items.STRINGS)
                 .define('H', Items.HONEYCOMB)
                 .define('S', ItemTags.SOUL_FIRE_BASE_BLOCKS)
                 .unlockedBy("get_soul", unlockedBy(ItemPredicate.Builder.item().of(ItemTags.SOUL_FIRE_BASE_BLOCKS).build()))
-                .save(c, ModBlocks.SOUL_CANDLE.getId());
+                .save(recipeOutput, ModBlocks.SOUL_CANDLE.getId());
 
-        assert ModBlocks.END_CANDLE.getId() != null;
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.END_CANDLE.get(), 4)
                 .pattern("s")
                 .pattern("H")
                 .pattern("E")
-                .define('s', Tags.Items.STRING)
+                .define('s', Tags.Items.STRINGS)
                 .define('H', Items.HONEYCOMB)
                 .define('E', Items.END_ROD)
                 .unlockedBy("get_end_rod", unlockedBy(ItemPredicate.Builder.item().of(Items.END_ROD).build()))
-                .save(c, ModBlocks.END_CANDLE.getId());
+                .save(recipeOutput, ModBlocks.END_CANDLE.getId());
 
-        assert ModBlocks.COPPER_CANDLE.getId() != null;
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.COPPER_CANDLE.get(), 1)
                 .pattern("s")
                 .pattern("H")
                 .pattern("E")
-                .define('s', Tags.Items.STRING)
+                .define('s', Tags.Items.STRINGS)
                 .define('H', Items.HONEYCOMB)
                 .define('E', Items.COPPER_INGOT)
                 .unlockedBy("get_copper", unlockedBy(ItemPredicate.Builder.item().of(Items.COPPER_INGOT).build()))
-                .save(c, ModBlocks.COPPER_CANDLE.getId());
+                .save(recipeOutput, ModBlocks.COPPER_CANDLE.getId());
 
 
         ModBlocks.SCENTED_CANDLES.forEach((scented, candle) -> {
             if(candle == null) return;
-            if(candle.getId() == null) return;
-            Item flower = ForgeRegistries.ITEMS.getValue(Helpers.minecraftId(scented.name().toLowerCase(Locale.ROOT)));
+            Item flower = BuiltInRegistries.ITEM.get(Helpers.minecraftId(scented.name().toLowerCase(Locale.ROOT)));
             if(scented == ModBlocks.Scented.OXEYE) flower = Items.OXEYE_DAISY;
-            if(flower == null) return;
             ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, candle.get())
                     .pattern("FFF")
                     .pattern("FCF")
@@ -88,7 +85,7 @@ public class ModRecipeProvider extends RecipeProvider {
                     .define('C', Items.CANDLE)
                     .define('F', flower)
                     .unlockedBy("get_candle", unlockedBy(ItemPredicate.Builder.item().of(Items.CANDLE).build()))
-                    .save(c, candle.getId());
+                    .save(recipeOutput, candle.getId());
         });
     }
 }

@@ -1,9 +1,7 @@
 package com.vomiter.morecandles.common.block;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
+import net.minecraft.core.Holder;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.level.Level;
@@ -13,7 +11,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 public class ScentedCandle  extends CandleBlock implements IScentedCandle {
-    public final MobEffect effect;
+    public final Holder<MobEffect> effect;
     private final double r;
     private final double g;
     private final double b;
@@ -21,10 +19,10 @@ public class ScentedCandle  extends CandleBlock implements IScentedCandle {
     private int ticksUntilNextParticle = 0;
     private int particleUntilCooldown = particleUntilCooldownMax;
 
-    public ScentedCandle(Properties p_152801_, MobEffect effect) {
+    public ScentedCandle(Properties p_152801_, Holder<MobEffect> effect) {
         super(p_152801_);
         this.effect = effect;
-        int color = effect.getColor(); // 例如 SAEffects.XXX.get().getColor()
+        int color = effect.value().getColor(); // 例如 SAEffects.XXX.get().getColor()
         r = (color >> 16 & 255) / 255.0;
         g = (color >> 8 & 255) / 255.0;
         b = (color & 255) / 255.0;
@@ -51,7 +49,7 @@ public class ScentedCandle  extends CandleBlock implements IScentedCandle {
     }
 
     @Override
-    public MobEffect effect() {
+    public Holder<MobEffect> effect() {
         return effect;
     }
 

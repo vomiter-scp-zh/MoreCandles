@@ -16,16 +16,15 @@ public final class LootTableHelpers {
     private LootTableHelpers() {}
 
     /**
-     * Vanilla Candle loot 行為：
      * - candles=1 -> 掉 1
      * - candles=2 -> 掉 2
      * - candles=3 -> 掉 3
      * - candles=4 -> 掉 4
-     * - 並套用 explosion_decay
+     * - 套用 explosion_decay
      *
-     * @param candleBlock 用來做 block_state_property 判斷的 block（通常就是自己）
-     * @param dropItem    實際掉落的 item（通常也是自己）
-     * @param candlesProp state 上的蠟燭數量屬性（通常 BlockStateProperties.CANDLES）
+     * @param candleBlock 用來做 block_state_property 判斷的 block
+     * @param dropItem    實際掉落的
+     * @param candlesProp state 上的蠟燭數量屬性
      */
     public static LootTable.Builder candleLikeDrops(Block candleBlock, ItemLike dropItem, IntegerProperty candlesProp) {
         return LootTable.lootTable().withPool(
@@ -57,7 +56,6 @@ public final class LootTableHelpers {
         );
     }
 
-    // 如果你所有 candle 都是標準 CandleBlock（有 BlockStateProperties.CANDLES），可以再包一層簡化呼叫：
     public static LootTable.Builder vanillaCandleLikeDrops(Block candleBlock) {
         return candleLikeDrops(candleBlock, candleBlock, BlockStateProperties.CANDLES);
     }

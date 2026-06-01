@@ -5,16 +5,16 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.fml.ModList;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModCreativeTabs {
 
     public static final DeferredRegister<CreativeModeTab> TABS =
             ModRegistries.createRegistry(Registries.CREATIVE_MODE_TAB);
 
-    public static final RegistryObject<CreativeModeTab> TAB = TABS.register(
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> TAB = TABS.register(
             "more_candles",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("itemGroup.more_candles"))

@@ -3,7 +3,7 @@ package com.vomiter.morecandles.data;
 import com.vomiter.morecandles.MoreCandles;
 import com.vomiter.morecandles.registry.ModBlocks;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.common.data.LanguageProvider;
 
 public class ModLangProvider extends LanguageProvider {
     String locale;

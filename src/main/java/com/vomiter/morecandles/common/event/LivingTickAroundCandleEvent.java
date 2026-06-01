@@ -2,9 +2,10 @@ package com.vomiter.morecandles.common.event;
 
 import com.vomiter.morecandles.Helpers;
 import com.vomiter.morecandles.common.block.IScentedCandle;
-import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
@@ -13,7 +14,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.CandleBlock;
-import net.minecraftforge.event.entity.living.LivingEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 
 import java.util.*;
 
@@ -25,7 +26,7 @@ public class LivingTickAroundCandleEvent {
             Helpers.id("morecandles", "misc/mixed_scents");
 
     private static void awardMixedScents(ServerPlayer player) {
-        Advancement adv = player.server.getAdvancements().getAdvancement(ADV_MIXED_SCENTS);
+        AdvancementHolder adv = player.server.getAdvancements().get(ADV_MIXED_SCENTS);
         if (adv == null) return;
         AdvancementProgress progress = player.getAdvancements().getOrStartProgress(adv);
         if (progress.isDone()) return;
@@ -35,13 +36,13 @@ public class LivingTickAroundCandleEvent {
         }
     }
 
-    public static void onLivingTick(LivingEvent.LivingTickEvent event){
-        LivingEntity entity = event.getEntity();
+    public static void onLivingTick(EntityTickEvent.Post event){
+        if(!(event.getEntity() instanceof LivingEntity entity)) return;
         if((entity.level().isClientSide())) return;
         if(!(entity instanceof Player)) return;
         if(entity.tickCount % INTERVAL != 0) return;
         BlockPos center = entity.blockPosition();
-        Set<MobEffect> mobEffects = new HashSet<>();
+        Set<Holder<MobEffect>> mobEffects = new HashSet<>();
         int r = 5;
         for (int dx = -r; dx <= r; dx++) {for (int dy = -r; dy <= 2; dy++) {for (int dz = -r; dz <= r; dz++) {
             BlockPos pos = center.offset(dx, dy, dz);

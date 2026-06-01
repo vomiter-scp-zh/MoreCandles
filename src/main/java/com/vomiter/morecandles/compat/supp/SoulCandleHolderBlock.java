@@ -21,7 +21,7 @@ import java.util.function.Supplier;
 
 public class SoulCandleHolderBlock extends CandleHolderBlock implements ISoulCandle {
     public SoulCandleHolderBlock(@Nullable DyeColor color, Properties properties) {
-        super(color, properties, ModParticles.SMALL_SOUL_FLAME::get, CandleHolderBlock::getParticleOffsets);
+        super(color, properties, ModParticles.SMALL_SOUL_FLAME::get, CandleHolderBlock::getDefaultParticleOffsets);
     }
 
     private int ticksUntilNExtPossibleSoulParticle = 0;
@@ -38,7 +38,7 @@ public class SoulCandleHolderBlock extends CandleHolderBlock implements ISoulCan
 
     @Override
     public @NotNull Iterable<Vec3> getSoulCandleParticleOffsets(@NotNull BlockState p_152812_) {
-        return CandleHolderBlock.getParticleOffsets(p_152812_);
+        return CandleHolderBlock.getDefaultParticleOffsets(p_152812_);
     }
 
     public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {

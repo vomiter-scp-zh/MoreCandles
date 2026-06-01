@@ -3,10 +3,10 @@ package com.vomiter.morecandles.data.models;
 import com.vomiter.morecandles.MoreCandles;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 public class ModItemModelProvider extends ItemModelProvider {
 
@@ -16,19 +16,11 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        // ===== Spawn Eggs =====
-
-        // 你如果還有一般物品也可以加：
-        // basicItem(ModItems.SOME_ITEM.get());
     }
 
-    private void spawnEgg(RegistryObject<? extends Item> item) {
-        withExistingParent(item.getId().getPath(), mcLoc("item/template_spawn_egg"));
-    }
 
     @SuppressWarnings("unused")
-    private void simpleGenerated(RegistryObject<? extends Item> item, String texturePath) {
-        // 需要時可用：item/generated + 自訂貼圖
+    private void simpleGenerated(DeferredHolder<? extends Item, ? extends Item> item, String texturePath) {
         ModelFile parent = new ModelFile.UncheckedModelFile(mcLoc("item/generated"));
         getBuilder(item.getId().getPath())
                 .parent(parent)

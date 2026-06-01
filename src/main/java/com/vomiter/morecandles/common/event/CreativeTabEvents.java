@@ -1,7 +1,7 @@
 package com.vomiter.morecandles.common.event;
 
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 
 public class CreativeTabEvents {
 

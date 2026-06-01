@@ -163,7 +163,7 @@ public class ModSuppCandleHolderRawProvider implements DataProvider {
     }
 
     private static ResourceLocation suppModelLoc(String modelName) {
-        return new ResourceLocation("supplementaries", "block/candle_holders/" + modelName);
+        return ResourceLocation.fromNamespaceAndPath("supplementaries", "block/candle_holders/" + modelName);
     }
 
     private static String variantKey(boolean lit, Horizontal facing, Face face, int candles) {

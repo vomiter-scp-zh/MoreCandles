@@ -1,6 +1,9 @@
 package com.vomiter.morecandles.common.block;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.particles.ColorParticleOption;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -18,7 +21,7 @@ public interface IScentedCandle {
     double r();
     double g();
     double b();
-    MobEffect effect();
+    Holder<MobEffect> effect();
 
     int particleUntilCooldownMax = 32;
     int ticksUntilNextParticleMax = 10;
@@ -53,11 +56,12 @@ public interface IScentedCandle {
             }
 
             if (f < 1 - 0.3 * (candleNumber - 1) * 0.1 && getTicksUntilNextParticle() <= 0) {
-                level.addParticle(ParticleTypes.ENTITY_EFFECT,
+                level.addParticle(
+                        ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, (float) r(), (float) g(), (float) b()),
                         p.x,
                         p.y + 0.3,
                         p.z,
-                        r(), g(), b());
+                        0, 0, 0);
                 setParticleUntilCooldown(getParticleUntilCooldown() - 1);
                 if(getParticleUntilCooldown() <= 0){
                     setTicksUntilNextParticle(ticksUntilNextParticleMax);

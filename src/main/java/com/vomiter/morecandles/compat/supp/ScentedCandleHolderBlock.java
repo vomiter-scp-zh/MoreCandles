@@ -3,17 +3,19 @@ package com.vomiter.morecandles.compat.supp;
 import com.vomiter.morecandles.common.block.IScentedCandle;
 import net.mehvahdjukaar.supplementaries.common.block.blocks.CandleHolderBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 public class ScentedCandleHolderBlock  extends CandleHolderBlock implements IScentedCandle {
-    public final MobEffect effect;
+    public final Holder<MobEffect> effect;
     private final double r;
     private final double g;
     private final double b;
@@ -21,10 +23,10 @@ public class ScentedCandleHolderBlock  extends CandleHolderBlock implements ISce
     private int ticksUntilNextParticle = 0;
     private int particleUntilCooldown = particleUntilCooldownMax;
 
-    public ScentedCandleHolderBlock(DyeColor color, Properties properties, MobEffect effect) {
-        super(color, properties, () -> ParticleTypes.SMALL_FLAME, CandleHolderBlock::getParticleOffsets);
+    public ScentedCandleHolderBlock(DyeColor color, BlockBehaviour.Properties properties, Holder<MobEffect> effect) {
+        super(color, properties, () -> ParticleTypes.SMALL_FLAME, CandleHolderBlock::getDefaultParticleOffsets);
         this.effect = effect;
-        int ecolor = effect.getColor(); // 例如 SAEffects.XXX.get().getColor()
+        int ecolor = effect.value().getColor(); // 例如 SAEffects.XXX.get().getColor()
         r = (ecolor >> 16 & 255) / 255.0;
         g = (ecolor >> 8 & 255) / 255.0;
         b = (ecolor & 255) / 255.0;
@@ -52,7 +54,7 @@ public class ScentedCandleHolderBlock  extends CandleHolderBlock implements ISce
     }
 
     @Override
-    public MobEffect effect() {
+    public Holder<MobEffect> effect() {
         return effect;
     }
 
@@ -78,6 +80,6 @@ public class ScentedCandleHolderBlock  extends CandleHolderBlock implements ISce
 
     @Override
     public Iterable<Vec3> getScentedCandleParticleOffsets(BlockState p_152812_) {
-        return CandleHolderBlock.getParticleOffsets(p_152812_);
+        return CandleHolderBlock.getDefaultParticleOffsets(p_152812_);
     }
 }

@@ -8,10 +8,10 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import static net.minecraft.world.level.block.CandleBlock.CANDLES;
 import static net.minecraft.world.level.block.CandleBlock.LIT;
@@ -58,7 +58,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ModBlocks.SCENTED_CANDLES.values().forEach(this::customCandle);
     }
 
-    private void customCandle(RegistryObject<Block> block){
+    private void customCandle(DeferredHolder<Block, Block> block){
         customCandle(block.get(), block.getId().getPath());
     }
 

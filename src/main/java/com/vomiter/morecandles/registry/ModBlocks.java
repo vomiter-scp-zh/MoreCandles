@@ -3,6 +3,8 @@ package com.vomiter.morecandles.registry;
 import com.vomiter.morecandles.common.block.*;
 import com.vomiter.morecandles.compat.supp.ModSuppRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -17,10 +19,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraftforge.fml.ModList;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.fml.ModList;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.EnumMap;
 import java.util.Locale;
@@ -30,7 +31,7 @@ import java.util.function.ToIntFunction;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS
-            = ModRegistries.createRegistry(ForgeRegistries.BLOCKS);
+            = ModRegistries.createRegistry(BuiltInRegistries.BLOCK);
 
     private static ToIntFunction<BlockState> litBlockEmission(int p_50760_) {
         return (p_50763_) -> {
@@ -59,37 +60,37 @@ public class ModBlocks {
         return new CopperCandle(BlockBehaviour.Properties.of().mapColor(p_285034_).noOcclusion().strength(0.1F).sound(SoundType.CANDLE).lightLevel(CandleBlock.LIGHT_EMISSION).pushReaction(PushReaction.DESTROY));
     }
 
-    private static ScentedCandle scentedCandle(MapColor p_285034_, MobEffect effect) {
+    private static ScentedCandle scentedCandle(MapColor p_285034_, Holder<MobEffect> effect) {
         return new ScentedCandle(BlockBehaviour.Properties.of().mapColor(p_285034_).noOcclusion().strength(0.1F).sound(SoundType.CANDLE).lightLevel(CandleBlock.LIGHT_EMISSION).pushReaction(PushReaction.DESTROY), effect);
     }
 
     public enum Scented{
-        POPPY(() -> MobEffects.NIGHT_VISION),
-        ALLIUM(() -> MobEffects.FIRE_RESISTANCE),
-        DANDELION(() -> MobEffects.SATURATION),
-        OXEYE(() -> MobEffects.REGENERATION),
-        CORNFLOWER(() -> MobEffects.JUMP);
+        POPPY(MobEffects.NIGHT_VISION),
+        ALLIUM(MobEffects.FIRE_RESISTANCE),
+        DANDELION(MobEffects.SATURATION),
+        OXEYE(MobEffects.REGENERATION),
+        CORNFLOWER(MobEffects.JUMP);
 
-        public final Supplier<MobEffect> effect;
-        Scented(Supplier<MobEffect> effect){
-            this.effect = effect;
+        public final Supplier<Holder<MobEffect>> effect;
+        Scented(Holder<MobEffect> effect){
+            this.effect = () -> effect;
         }
     }
 
-    public static final Map<Scented, RegistryObject<Block>> SCENTED_CANDLES = new EnumMap<>(Scented.class);
+    public static final Map<Scented, DeferredHolder<Block, Block>> SCENTED_CANDLES = new EnumMap<>(Scented.class);
     static {
         for (Scented scented : Scented.values()) {
             SCENTED_CANDLES.put(scented, BLOCKS.register("scented_candle/" + scented.toString().toLowerCase(Locale.ROOT), () -> scentedCandle(MapColor.SAND, scented.effect.get())));
         }
     }
-    public static final RegistryObject<Block> REDSTONE_CANDLE = BLOCKS.register("redstone_candle", () -> redStoneCandle(MapColor.SAND));
-    public static final RegistryObject<Block> SOUL_CANDLE = BLOCKS.register("soul_candle", () -> soulCandle(MapColor.SAND));
-    public static final RegistryObject<Block> END_CANDLE = BLOCKS.register("end_candle", () -> endCandle(MapColor.TERRACOTTA_WHITE));
-    public static final RegistryObject<Block> COPPER_CANDLE = BLOCKS.register("copper_candle", () -> copperCandle(MapColor.TERRACOTTA_ORANGE));
+    public static final DeferredHolder<Block, Block> REDSTONE_CANDLE = BLOCKS.register("redstone_candle", () -> redStoneCandle(MapColor.SAND));
+    public static final DeferredHolder<Block, Block> SOUL_CANDLE = BLOCKS.register("soul_candle", () -> soulCandle(MapColor.SAND));
+    public static final DeferredHolder<Block, Block> END_CANDLE = BLOCKS.register("end_candle", () -> endCandle(MapColor.TERRACOTTA_WHITE));
+    public static final DeferredHolder<Block, Block> COPPER_CANDLE = BLOCKS.register("copper_candle", () -> copperCandle(MapColor.TERRACOTTA_ORANGE));
 
 
 
-    public static void registerItem(RegistryObject<Block> block){
+    public static void registerItem(DeferredHolder<Block, Block> block){
         ModItems.ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
